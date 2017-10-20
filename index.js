@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const csvSync = require('csv-parse/lib/sync');
+const parse = require('csv-parse/lib/sync');
 const path = require('path');
 const url = require('url');
 const iconv = require('iconv-lite');
@@ -27,7 +28,7 @@ const DEF_ENCODE = "utf-8";
 
 module.exports = {
     blocks: {
-        showCsv: {
+        includeCsv: {
             process: function(blk) {
                 const tagBody = blk.body;
                 const tagSrc = blk.kwargs.src;
@@ -36,7 +37,7 @@ module.exports = {
                 let csvData = null;
                 let relativeSrcPath = null;
                 
-                if (tagSrc) {
+                if (tagSrc) { // contents from file
                     const ctxFilePath = (this.ctx.file || {}).path || this.ctx.ctx.file.path || null;
                     const bookRootPath = this.book.root || this.output.root();
                     relativeSrcPath = url.resolve(ctxFilePath, tagSrc);
@@ -45,14 +46,11 @@ module.exports = {
                     // support various encodings
                     if (encoding) {
                         data = iconv.decode(data, encoding);
-                        console.log(data);
                     }
-                    console.log(data);
-                    console.log(data.toString());
                     csvData = csvSync(data);
-                } else {
-                    // FIXME
-                    csvData = tagBody;
+                } else { // contents from tag body
+                    console.log(tagBody);
+                    csvData = parse(tagBody, {skip_empty_lines: true});
                 }
                 let table = buildTable(csvData, useHeader); // build table html tags
                 if (tagSrc) {

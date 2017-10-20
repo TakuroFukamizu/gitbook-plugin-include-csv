@@ -21,15 +21,15 @@ And config your book.json file.
 ## How to use it?
 
 ```
-{% showCsv src="./hoge.csv" %}{% endshowCsv %}
+{% includeCsv src="./hoge.csv" %}{% endincludeCsv %}
 ```
 
 ```
-{% showCsv %}
-"hoge","fuga"
-"a","0001"
-"b","002"
-{% endshowCsv %}
+{% includeCsv %}
+hoge,fuga
+a,0001
+b,002
+{% endincludeCsv %}
 ```
 
 ### Arguments
@@ -40,7 +40,18 @@ And config your book.json file.
 | encoding  | character encoding in CSV file.       | shift_jis      |
 | useHeader | use 1st row for header.               | true           |
 
-usage example
+#### usage example
+
+Show the table from csv file, 1st row is header, file's encoding is shift_jis(japanese traditional encoding format).
 ```
-{% showCsv src="./sample_records.csv", encoding="shift_jis", useHeader="true" %}{% endshowCsv %}
+{% includeCsv src="./sample_records.csv", encoding="shift_jis", useHeader="true" %}{% endincludeCsv %}
+```
+
+Show the table from tag body, is row is header.
+```
+{% includeCsv useHeader="true" %}
+c1,c2,c3
+1,1,1
+2,2,2
+{% endincludeCsv %}
 ```
