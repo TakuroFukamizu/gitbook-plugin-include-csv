@@ -1,0 +1,26 @@
+{
+  "name": "gitbook-plugin-include-csv",
+  "description": "Show csv plugin for GitBook",
+  "main": "index.js",
+  "version": "0.0.1",
+  "engines": {
+    "gitbook": ">=3.0.0"
+  },
+  "homepage": "https://github.com/TakuroFukamizu/gitbook-plugin-include-csv",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TakuroFukamizu/gitbook-plugin-include-csv.git"
+  },
+  "license": "Apache 2",
+  "bugs": {
+    "url": "https://github.com/TakuroFukamizu/gitbook-plugin-include-csv/issues"
+  },
+  "dependencies": {
+    "csv-parse": "^1.2.4",
+    "iconv-lite": "^0.4.19",
+    "jquery": "^3.2.1",
+    "jsdom": "^11.3.0",
+    "path": "^0.12.7",
+    "url": "^0.11.0"
+  }
+}
