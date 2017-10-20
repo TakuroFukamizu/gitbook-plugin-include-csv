@@ -1,5 +1,4 @@
 # gitbook-plugin-include-csv
-==============
 
 ## What is it?
 A Gitbook plugin for including and rending CSV file in your book.
@@ -33,3 +32,15 @@ And config your book.json file.
 {% endshowCsv %}
 ```
 
+### Arguments
+
+| name      | description                           | example        |
+|-----------|---------------------------------------|----------------|
+| src       | The file path for including CSV file. | ./filename.csv |
+| encoding  | character encoding in CSV file.       | shift_jis      |
+| useHeader | use 1st row for header.               | true           |
+
+usage example
+```
+{% showCsv src="./sample_records.csv", encoding="shift_jis", useHeader="true" %}{% endshowCsv %}
+```

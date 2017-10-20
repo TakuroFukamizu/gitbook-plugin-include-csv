@@ -4,11 +4,11 @@ const fs = require('fs');
 const csvSync = require('csv-parse/lib/sync');
 const path = require('path');
 const url = require('url');
+const iconv = require('iconv-lite');
 
 function buildTable(csvData, useHeader) {
     let html = "<table>";
     for(let i=0; i<csvData.length; i++) {
-        console.log(csvData[i]);
         if (useHeader && i==0) {
             html += "<tr>";
             html += csvData[i].map((col) => "<th>"+col+"</th>" ).join('');
@@ -40,15 +40,15 @@ module.exports = {
                     const ctxFilePath = (this.ctx.file || {}).path || this.ctx.ctx.file.path || null;
                     const bookRootPath = this.book.root || this.output.root();
                     relativeSrcPath = url.resolve(ctxFilePath, tagSrc);
-                    // console.log(tagSrc, ctxFilePath, relativeSrcPath, bookRootPath);
                     let filePath = decodeURI(path.resolve(bookRootPath, relativeSrcPath));
                     let data = fs.readFileSync(filePath);
-                    // FIXME!!
-                    // if (encoding) {
-                    //     let conv = new Iconv(encoding, DEF_ENCODE);
-                    //     data = conv.convert(data);
-                    //     console.log(data);
-                    // }
+                    // support various encodings
+                    if (encoding) {
+                        data = iconv.decode(data, encoding);
+                        console.log(data);
+                    }
+                    console.log(data);
+                    console.log(data.toString());
                     csvData = csvSync(data);
                 } else {
                     // FIXME
@@ -58,7 +58,6 @@ module.exports = {
                 if (tagSrc) {
                     table = "<a href=\"/" + relativeSrcPath + "\" target=\"_blank\">" + tagSrc + "</a>" + table;
                 }
-                console.log(table);
                 return table;
             }
         }
