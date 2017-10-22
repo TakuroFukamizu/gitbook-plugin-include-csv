@@ -48,8 +48,7 @@ module.exports = {
                         data = iconv.decode(data, encoding);
                     }
                     csvData = csvSync(data);
-                } else { // contents from tag body
-                    console.log(tagBody);
+                } else { // contents from tag body¥
                     csvData = parse(tagBody, {skip_empty_lines: true});
                 }
                 let table = buildTable(csvData, useHeader); // build table html tags
