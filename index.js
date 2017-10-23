@@ -7,8 +7,15 @@ const path = require('path');
 const url = require('url');
 const iconv = require('iconv-lite');
 
-function buildTable(csvData, useHeader) {
+function buildTable(csvData, useHeader, exHeaders) {
     let html = "<table>";
+    if (!useHeader && exHeaders != null) {
+        let th = exHeaders.split(',');
+        if (th.length !== csvData[0].length) throw new Error("invalid data in exHeaders.");
+        html += "<tr>";
+        html += th.map((col) => "<th>"+col+"</th>" ).join('');
+        html += "</tr>";
+    }
     for(let i=0; i<csvData.length; i++) {
         if (useHeader && i==0) {
             html += "<tr>";
@@ -34,6 +41,7 @@ module.exports = {
                 const tagSrc = blk.kwargs.src;
                 const useHeader = blk.kwargs.useHeader || false;
                 const encoding = blk.kwargs.encoding || null;
+                const exHeaders = blk.kwargs.exHeaders || null;
                 let csvData = null;
                 let relativeSrcPath = null;
                 
@@ -51,7 +59,7 @@ module.exports = {
                 } else { // contents from tag body¥
                     csvData = parse(tagBody, {skip_empty_lines: true});
                 }
-                let table = buildTable(csvData, useHeader); // build table html tags
+                let table = buildTable(csvData, useHeader, exHeaders); // build table html tags
                 if (tagSrc) {
                     table = "<a href=\"/" + relativeSrcPath + "\" target=\"_blank\">" + tagSrc + "</a>" + table;
                 }
