@@ -42,6 +42,7 @@ module.exports = {
                 const useHeader = blk.kwargs.useHeader || false;
                 const encoding = blk.kwargs.encoding || null;
                 const exHeaders = blk.kwargs.exHeaders || null;
+                const limit = blk.kwargs.limit || Infinity;
                 let csvData = null;
                 let relativeSrcPath = null;
                 
@@ -58,6 +59,9 @@ module.exports = {
                     csvData = csvSync(data);
                 } else { // contents from tag body¥
                     csvData = parse(tagBody, {skip_empty_lines: true});
+                }
+                if (limit != Infinity) {
+                    csvData = csvData.slice(0, limit);
                 }
                 let table = buildTable(csvData, useHeader, exHeaders); // build table html tags
                 if (tagSrc) {
