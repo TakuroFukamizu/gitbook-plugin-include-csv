@@ -42,11 +42,13 @@ b,002
 
 ### Arguments
 
-| name      | description                           | example        |
-|-----------|---------------------------------------|----------------|
-| src       | The file path for including CSV file. | ./filename.csv |
-| encoding  | character encoding in CSV file.       | shift_jis      |
-| useHeader | use 1st row for header.               | true           |
+| name      | description                           | example           |
+|-----------|---------------------------------------|-------------------|
+| src       | The file path for including CSV file. | "./filename.csv"  |
+| encoding  | character encoding in CSV file.       | "shift_jis"       |
+| useHeader | use 1st row for header.               | "true"            |
+| exHeaders | define column headers.                | "col01,col02"     |
+| limit     | load limit number of rows.            | 5                 |
 
 #### usage example
 
@@ -68,3 +70,15 @@ c1,c2,c3
 ```
 
 ![example4](./doc/sample_tagbody_withoption.png "example")
+
+Show the table from csv file, define column headers directory, set limit of rows.
+
+```
+{% includeCsv 
+    src="./train.1.csv", 
+    exHeaders="PassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked",
+    limit=2 %}
+{% endincludeCsv %}
+```
+
+![example5](./doc/sample_exheader_limit.png "example")
