@@ -2,7 +2,7 @@
   "name": "gitbook-plugin-include-csv",
   "description": "Show csv plugin for GitBook",
   "main": "index.js",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "gitbook": ">=3.0.0"
   },
@@ -16,7 +16,7 @@
     "url": "https://github.com/TakuroFukamizu/gitbook-plugin-include-csv/issues"
   },
   "dependencies": {
-    "csv-parse": "^1.2.4",
+    "csv-parse": "^1.3.3",
     "iconv-lite": "^0.4.19",
     "path": "^0.12.7",
     "url": "^0.11.0"
