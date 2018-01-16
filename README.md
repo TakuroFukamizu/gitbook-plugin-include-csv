@@ -4,7 +4,7 @@
 A Gitbook plugin for including and rending CSV file in your book.
 
 ## How to install it?
-You can install via NPM: 
+You can install via NPM:
 
 ```sh
 $ npm install --save gitbook-plugin-include-csv
@@ -45,6 +45,7 @@ b,002
 | name      | description                           | example           |
 |-----------|---------------------------------------|-------------------|
 | src       | The file path for including CSV file. | "./filename.csv"  |
+| linkSrc   | Link to CSV file above the table.     | "true"            |
 | encoding  | character encoding in CSV file.       | "shift_jis"       |
 | useHeader | use 1st row for header.               | "true"            |
 | exHeaders | define column headers.                | "col01,col02"     |
@@ -74,8 +75,8 @@ c1,c2,c3
 Show the table from csv file, define column headers directory, set limit of rows.
 
 ```
-{% includeCsv 
-    src="./train.1.csv", 
+{% includeCsv
+    src="./train.1.csv",
     exHeaders="PassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked",
     limit=2 %}
 {% endincludeCsv %}

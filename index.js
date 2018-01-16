@@ -39,6 +39,7 @@ module.exports = {
             process: function(blk) {
                 const tagBody = blk.body;
                 const tagSrc = blk.kwargs.src;
+                const linkSrc = (blk.kwargs.linkSrc || true) === true;
                 const useHeader = blk.kwargs.useHeader || false;
                 const encoding = blk.kwargs.encoding || null;
                 const exHeaders = blk.kwargs.exHeaders || null;
@@ -65,7 +66,8 @@ module.exports = {
                 }
                 let table = buildTable(csvData, useHeader, exHeaders); // build table html tags
                 if (tagSrc) {
-                    table = "<a href=\"/" + relativeSrcPath + "\" target=\"_blank\">" + tagSrc + "</a>" + table;
+                  const link = linkSrc ? `<a href="${relativeSrcPath}" target="_blank">${tagSrc}</a>` : "";
+                  table = `${link} ${table}`;
                 }
                 return table;
             }
