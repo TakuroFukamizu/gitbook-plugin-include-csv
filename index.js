@@ -55,7 +55,7 @@ module.exports = {
                 const exHeaders = blk.kwargs.exHeaders || null;
                 const limit = blk.kwargs.limit || Infinity;
                 let csvData = null;
-                let relativeSrcPath = null;
+                let relativeSrcPath = null; //css filepath from docment root
                 
                 if (tagSrc) { // contents from file
                     const ctxFilePath = (this.ctx.file || {}).path || this.ctx.ctx.file.path || null;
@@ -68,7 +68,7 @@ module.exports = {
                         data = iconv.decode(data, encoding);
                     }
                     csvData = csvSync(data);
-                } else { // contents from tag body¥
+                } else { // contents from tag body
                     csvData = parse(tagBody, {skip_empty_lines: true});
                 }
                 if (limit != Infinity) {
@@ -76,7 +76,7 @@ module.exports = {
                 }
                 let table = buildTable(csvData, useHeader, exHeaders); // build table html tags
                 if (tagSrc) {
-                  const link = linkSrc ? `<a href="${relativeSrcPath}" target="_blank">${tagSrc}</a>` : "";
+                  const link = linkSrc ? `<a href="/${relativeSrcPath}" target="_blank">${tagSrc}</a>` : "";
                   table = `${link} ${table}`;
                 }
                 return table;
