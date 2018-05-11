@@ -13,22 +13,32 @@ function buildTable(csvData, useHeader, exHeaders) {
         let th = exHeaders.split(',');
         if (th.length !== csvData[0].length) throw new Error("invalid data in exHeaders.");
         html += "<tr>";
-        html += th.map((col) => "<th>"+col+"</th>" ).join('');
+        html += th.map((col) => "<th>"+render2Html(col)+"</th>" ).join('');
         html += "</tr>";
     }
     for(let i=0; i<csvData.length; i++) {
         if (useHeader && i==0) {
             html += "<tr>";
-            html += csvData[i].map((col) => "<th>"+col+"</th>" ).join('');
+            html += csvData[i].map((col) => "<th>"+render2Html(col)+"</th>" ).join('');
             html += "</tr>";
             continue;
         }
         html += "<tr>";
-        html += csvData[i].map((col) => "<td>"+col+"</td>" ).join('');
+        html += csvData[i].map((col) => "<td>"+render2Html(col)+"</td>" ).join('');
         html += "</tr>";
     }
     html += "</table>";
     return html;
+}
+
+function render2Html(text){
+    if(!text){
+        return text;
+    }
+    return text
+            .replace(/\n/g,"<br>")
+            .replace(/ /g,"<span style='padding-left: 0.6rem'></span>")
+            .replace(/\t/g,"<span style='padding-left: 2.4rem'></span>");
 }
 
 const DEF_ENCODE = "utf-8";
