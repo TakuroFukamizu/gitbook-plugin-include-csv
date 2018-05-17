@@ -33,7 +33,7 @@ function buildTable(csvData, useHeader, exHeaders) {
 
 function render2Html(text){
     if(!text){
-        return text;
+        return "&nbsp;";
     }
     return text
             .replace(/\n/g,"<br>")
