@@ -1,5 +1,10 @@
 # gitbook-plugin-include-csv
 
+[![NPM Stats](https://nodei.co/npm/gitbook-plugin-include-csv.png)](https://npmjs.org/package/gitbook-plugin-include-csv/)  
+[![npm](https://img.shields.io/npm/v/gitbook-plugin-include-csv.svg)](https://npmjs.org/package/gitbook-plugin-include-csv/)
+[![npm downloads](https://img.shields.io/npm/dm/gitbook-plugin-include-csv.svg)](https://npmjs.org/package/gitbook-plugin-include-csv/)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/gitbook-plugin-include-csv.svg)](https://npmjs.org/package/gitbook-plugin-include-csv/)
+
 ## What is it?
 A Gitbook plugin for including and rending CSV file in your book.
 
