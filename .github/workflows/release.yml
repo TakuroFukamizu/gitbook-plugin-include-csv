@@ -18,9 +18,7 @@ jobs:
           node-version: 10.x
           registry-url: 'https://registry.npmjs.org'
       - name: install can-npm-publish and dependencies
-        run: |
-          npm install can-npm-publish
-          npm ci
+        run: npm ci
       - name: check version and add tag
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

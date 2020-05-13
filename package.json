@@ -7,7 +7,7 @@
     "csv"
   ],
   "main": "index.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "node": ">=10.16.3",
     "gitbook": ">=3.0.0"
